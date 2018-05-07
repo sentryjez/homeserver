@@ -8,7 +8,7 @@ chown -R usenet /apps/radarr
 docker create \
 --name=radarr \
 -v /apps/radarr:/config \
-#-v /appconf/radarr:/home/usenet/.config/Radarr \
+-v /appconf/radarr:/home/usenet/.config/Radarr \
 -v /storage/downloads:/downloads \
 -v /storage/downloads/movies:/movies \
 -v /etc/localtime:/etc/localtime:ro \
