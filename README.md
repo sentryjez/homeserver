@@ -15,5 +15,5 @@ wget https://github.com/sentryjez/homeserver/archive/master.zip
 
 unzip master.zip
 
-sudo /bin/bash ./inst.sh
+sudo /bin/bash ./homeserver-master/inst.sh
 
