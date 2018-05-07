@@ -11,7 +11,7 @@ Installation:
 
 wget https://github.com/sentryjez/homeserver/archive/master.zip
 
-unzip master.zip
+unzip homeserver-master.zip
 
 /bin/bash ./inst.sh
 
