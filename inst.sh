@@ -36,12 +36,12 @@ sudo echo " Go to $url for Server-management" >> /etc/issue
 ###		Radarr-webgui
 ipaddr=`hostname -I | cut -d\  -f1`
 url=$ipaddr:7878
-sudo echo " Go to $url for Radarr" >> /etc/issue
+sudo echo " Go to $url for Radarr" | sudo tee --append /etc/issue
 
 ###		Sonarr-webgui
 ipaddr=`hostname -I | cut -d\  -f1`
 url=$ipaddr:8989
-sudo echo " Go to $url for Sonarr" >> /etc/issue
+sudo echo " Go to $url for Sonarr" | sudo tee --append /etc/issue
 
 ###		Sabnzbd-webgui
 ipaddr=`hostname -I | cut -d\  -f1`
