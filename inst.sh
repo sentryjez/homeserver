@@ -22,7 +22,7 @@ function addu {
 val=`source $tmp_txt | echo $app`
 
 function proc {
-	if [ $val = 1 ]; then
+	if [ $val =1 ]; then
 		/bin/bash ./build/$build
 	else
 		echo "$app will not be installed "
