@@ -1,5 +1,35 @@
 #!/bin/bash
 
+tmp_txt=/tmp/tmp.txt
+
+function message {
+	whiptail --title "$title" --msgbox "$text" $h $w
+}
+
+function yesno {
+	whiptail --title "$title" --yesno "$text" $h $w
+}
+
+function tmp {
+	echo $title=$? >> $tmp_txt
+}
+
+function addu {
+	useradd -M -u $uid -g $gid -s /sbin/nologin $user
+}
+
+
+val=`source $tmp_txt | echo $app`
+
+function proc {
+	if [ $val = 1 ]; then
+		/bin/bash ./build/$build
+	else
+		echo "$app will not be installed "
+	fi
+}
+
+
 ######################################################################
 #1.Update
 ###		Update the fresh install
@@ -13,25 +43,76 @@ apt update && apt upgrade
 apt -y install docker.io cockpit cockpit-docker
 
 ######################################################################
-#3.Media-stack
-##	3.1.Prereqs
+#3.TUI
+
+h=10
+w=70
+
+title='Welcome'
+text='Welcome to the automated Home/Media-server presented by SentryJez.'
+message
+
+title='Media-stack'
+text='Would you like to deploy a Media-stack, with apps like Emby, Sonarr,etc...?'
+yesno
+tmp
+
+title='Radarr'
+text='Would you like to install Radarr?'
+yesno
+tmp
+
+title='Sonarr'
+text='Would you like to install Sonarr?'
+yesno
+tmp
+
+title='Sabnzbd'
+text='Would you like to install Sabnzbd?'
+yesno
+tmp
+
+title='Emby'
+text='Would you like to install Emby?'
+yesno
+tmp
+
+######################################################################
+#20.Media-stack
+##	20.1.Prereqs
 ###		Install an user with no /home-directory an shell-login
 
-useradd -M -u 1001 -g 1001 -s /sbin/nologin usenet
+uid=1001
+gid=1001
+user=usenet
+addu
 
-##	3.2.Build the Docker-Containers and get them started
+##	20.2.Build the Docker-Containers and get them started
 
 ###		Script for "Radarr"-container
-/bin/bash ./build/buildrad.sh
+
+app=Radarr
+build=buildrad.sh
+proc
 
 ###		Script for "Sonarr"-container
-/bin/bash ./build/buildson.sh
+
+app=Sonarr
+build=buildson.sh
+proc
 
 ###		Script for "Sabnzbd"-container
-/bin/bash ./build/buildsab.sh
+
+app=Sabnzbd
+build=buildsab.sh
+proc
 
 ###		Script for "Emby"-container
-/bin/bash ./build/buildemb.sh
+
+app=Emby
+build=buildemb.sh
+proc
+
 
 ######################################################################
 #99.Post-install
@@ -70,7 +151,12 @@ disp
 
 ##	99.99.Reboot
 
+title='Reboot'
+text='Press OK to reboot, WebGUI-adresses will be displayed when rebooted.'
+message
+
 reboot now
+
 
 
 
