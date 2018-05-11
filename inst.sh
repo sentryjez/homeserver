@@ -17,7 +17,7 @@ url=$ipaddr:$port
 val=`source $tmp_txt && echo $[$app]`
 if (whiptail --title "$app" --yesno "$text" 10 70)
 then
-	echo $app=1 >> $tmp_txt && /bin/bash ./build/$app'.sh' &>/dev/null & \
+	echo $app=1 >> $tmp_txt && /bin/bash ./build/$app'.sh' \
 	sudo echo " Go to $url for $app" >> /etc/issue
 else
 	echo $app=0 >> $tmp_txt
