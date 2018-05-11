@@ -3,7 +3,7 @@
 docker pull emby/embyserver:latest
 
 mkdir -p /apps/emby
-chown -R usenet /apps/emby
+chown -R mediaserver /apps/emby
 
 docker create \
 --name=emby \
