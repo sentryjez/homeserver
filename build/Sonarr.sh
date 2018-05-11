@@ -3,7 +3,7 @@
 docker pull linuxserver/sonarr:latest
 
 mkdir -p /apps/sonarr
-chown -R usenet /apps/sonarr
+chown -R mediaserver /apps/sonarr
 
 docker create \
 --name=sonarr \
