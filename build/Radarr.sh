@@ -3,7 +3,7 @@
 docker pull linuxserver/radarr:latest
 
 mkdir -p /apps/radarr
-chown -R usenet /apps/radarr
+chown -R mediaserver /apps/radarr
 
 docker create \
 --name=radarr \
