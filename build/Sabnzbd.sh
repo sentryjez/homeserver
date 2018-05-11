@@ -3,7 +3,7 @@
 docker pull sabnzbd/sabnzbd:latest
 
 mkdir -p /apps/sabnzbd
-chown -R usenet /apps/sabnzbd
+chown -R mediaserver /apps/sabnzbd
 
 docker create \
 --name=sabnzbd \
